@@ -15,7 +15,7 @@ class Purchase {
     var quantity:Int
     var alreadyBought:Bool
     
-    init(name: String, quantity: Int, alreadyBought: Bool = false) {
+    init(name: String, quantity: Int = 0, alreadyBought: Bool = false) {
         self.name = name
         self.quantity = quantity
         self.alreadyBought = alreadyBought

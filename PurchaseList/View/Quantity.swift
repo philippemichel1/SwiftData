@@ -8,11 +8,12 @@
 import SwiftUI
 
 struct Quantity: View {
+    @Bindable var myQuantity:Purchase
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        Stepper("\(myQuantity.quantity)", value: $myQuantity.quantity, in: 0...100,step: 1)
     }
 }
 
-#Preview {
-    Quantity()
-}
+//#Preview {
+//    Quantity(myQuantity: <#Purchase#>)
+//}

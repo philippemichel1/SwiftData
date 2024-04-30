@@ -8,11 +8,14 @@
 import SwiftUI
 
 struct AlreadyBought: View {
+    @Bindable var alreadyBought:Purchase
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        HStack {
+            Toggle(alreadyBought.name, isOn: $alreadyBought.alreadyBought)
+        }
     }
 }
 
-#Preview {
-    AlreadyBought()
-}
+//#Preview {
+//    AlreadyBought(alreadyBought: .constant(false))
+//}

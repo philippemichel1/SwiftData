@@ -8,11 +8,38 @@
 import SwiftUI
 
 struct ContactForm: View {
+    @Environment(\.dismiss) var dismiss
+    @Binding var text:String
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        NavigationStack {
+            Form {
+                    Section("Ajouter article") {
+                        TextField("Nouvel Article", text: $text)
+                            .textFieldStyle(.roundedBorder)
+                            .padding()
+                    }
+                }
+            Button {
+                //self.addItem()
+            } label: {
+                Text("Valider ")
+                    .buttonStyle(PlainButtonStyle())
+                    
+            }
+            .toolbar {
+                ToolbarItem(placement: .topBarTrailing) {
+                    Button(action: { dismiss()
+                        
+                    }, label: {
+                        Image(systemName: "xmark.circle.fill")
+                    })
+                }
+            }
+        }
+        
     }
 }
 
 #Preview {
-    ContactForm()
+    ContactForm(text: .constant("Carottes"))
 }

@@ -10,19 +10,36 @@ import SwiftData
 
 struct ContentView: View {
     @Environment(\.modelContext) private var modelContext
-    @Query private var items: [Item]
+    @Query private var items: [Purchase]
+    @State private var purchaseLabel:String = ""
+    @State private var openView:Bool = false
+    
+    
+    
 
     var body: some View {
         NavigationSplitView {
+            VStack() {
+//                TextField("Nouvel Article", text: $purchaseLabel)
+//                    .textFieldStyle(.roundedBorder)
+//                    .padding()
+                //ContactForm(text: $purchaseLabel)
+                Button("Article") {self.openView.toggle()}
+            }
+            
             List {
                 ForEach(items) { item in
-                    NavigationLink {
-                        Text("Item at \(item.timestamp, format: Date.FormatStyle(date: .numeric, time: .standard))")
-                    } label: {
-                        Text(item.timestamp, format: Date.FormatStyle(date: .numeric, time: .standard))
+                    HStack {
+                        Quantity(myQuantity: item)
+                        AlreadyBought(alreadyBought: item)
                     }
+                   
                 }
                 .onDelete(perform: deleteItems)
+            }
+            .sheet(isPresented: $openView) {
+                ContactForm(text: $purchaseLabel)
+                    .presentationDetents([.fraction(0.40)])
             }
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
@@ -41,8 +58,13 @@ struct ContentView: View {
 
     private func addItem() {
         withAnimation {
-            let newItem = Item(timestamp: Date())
-            modelContext.insert(newItem)
+            if !purchaseLabel.isEmpty {
+                let newItem = Purchase(name: purchaseLabel)
+                modelContext.insert(newItem)
+                purchaseLabel = ""
+                
+            }
+            
         }
     }
 
@@ -57,5 +79,4 @@ struct ContentView: View {
 
 #Preview {
     ContentView()
-        .modelContainer(for: Item.self, inMemory: true)
 }
