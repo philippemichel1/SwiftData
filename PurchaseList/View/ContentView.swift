@@ -13,6 +13,7 @@ struct ContentView: View {
     @Query private var items: [Purchase]
     @State private var purchaseLabel:String = ""
     @State private var openView:Bool = false
+    @State private var save:Bool = false
     
     
     
@@ -20,10 +21,6 @@ struct ContentView: View {
     var body: some View {
         NavigationSplitView {
             VStack() {
-//                TextField("Nouvel Article", text: $purchaseLabel)
-//                    .textFieldStyle(.roundedBorder)
-//                    .padding()
-                //ContactForm(text: $purchaseLabel)
                 Button("Article") {self.openView.toggle()}
             }
             
@@ -37,18 +34,20 @@ struct ContentView: View {
                 }
                 .onDelete(perform: deleteItems)
             }
+            // affiche la fenetre sheet
             .sheet(isPresented: $openView) {
-                ContactForm(text: $purchaseLabel)
+                ContactForm(text: $purchaseLabel, validated: $save)
                     .presentationDetents([.fraction(0.40)])
+            }
+            // appel la fonction de sauvegarde
+            .onChange(of: save) {
+                if save == true {
+                    addItem()
+                }
             }
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     EditButton()
-                }
-                ToolbarItem {
-                    Button(action: addItem) {
-                        Label("Add Item", systemImage: "plus")
-                    }
                 }
             }
         } detail: {
@@ -62,6 +61,7 @@ struct ContentView: View {
                 let newItem = Purchase(name: purchaseLabel)
                 modelContext.insert(newItem)
                 purchaseLabel = ""
+                save = false
                 
             }
             

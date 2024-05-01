@@ -10,6 +10,7 @@ import SwiftUI
 struct ContactForm: View {
     @Environment(\.dismiss) var dismiss
     @Binding var text:String
+    @Binding var validated:Bool
     var body: some View {
         NavigationStack {
             Form {
@@ -20,7 +21,8 @@ struct ContactForm: View {
                     }
                 }
             Button {
-                //self.addItem()
+                self.validated = true
+                dismiss()
             } label: {
                 Text("Valider ")
                     .buttonStyle(PlainButtonStyle())
@@ -41,5 +43,5 @@ struct ContactForm: View {
 }
 
 #Preview {
-    ContactForm(text: .constant("Carottes"))
+    ContactForm(text: .constant("Carottes"), validated: .constant(false))
 }
