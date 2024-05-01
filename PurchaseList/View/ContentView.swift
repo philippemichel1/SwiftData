@@ -20,21 +20,19 @@ struct ContentView: View {
 
     var body: some View {
         NavigationSplitView {
-            VStack() {
+            VStack {
                 HStack {
-                    Button("Ajout Article") {self.openView.toggle()}
+                    Button("Ajout un article") {self.openView.toggle()}
                         .buttonStyle(PlainButtonStyle())
                         .foregroundColor(.white)
                         .padding(.horizontal)
                         .background(.blue)
                         .cornerRadius(10)
                         .font(.title2)
-                    
-                    
+
                 }
-                
             }
-            
+            .navigationTitle("Liste ")
             
             List {
                 ForEach(items) { item in
@@ -49,12 +47,12 @@ struct ContentView: View {
             // affiche la fenetre sheet
             .sheet(isPresented: $openView) {
                 ContactForm(text: $purchaseLabel, validated: $save)
-                    .presentationDetents([.fraction(0.40)])
+                    .presentationDetents([.fraction(0.30)])
             }
             // appel la fonction de sauvegarde
             .onChange(of: save) {
                 if save == true {
-                    addItem()
+                    saveItem()
                 }
             }
             .toolbar {
@@ -67,7 +65,7 @@ struct ContentView: View {
         }
     }
 
-    private func addItem() {
+    private func saveItem() {
         withAnimation {
             if !purchaseLabel.isEmpty {
                 let newItem = Purchase(name: purchaseLabel)
