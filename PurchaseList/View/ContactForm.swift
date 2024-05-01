@@ -20,14 +20,23 @@ struct ContactForm: View {
                             .padding()
                     }
                 }
-            Button {
-                self.validated = true
-                dismiss()
-            } label: {
-                Text("Valider ")
-                    .buttonStyle(PlainButtonStyle())
-                    
+            VStack {
+                if !text.isEmpty {
+                    Button {
+                        self.validated = true
+                        dismiss()
+                    } label: {
+                        Text("Valider ")
+                            .buttonStyle(PlainButtonStyle())
+                            .foregroundColor(.white)
+                            .padding(.horizontal)
+                            .background(.blue)
+                            .cornerRadius(10)
+                            .font(.title2)
+                    }
+                }
             }
+                
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
                     Button(action: { dismiss()

@@ -12,10 +12,11 @@ struct AlreadyBought: View {
     var body: some View {
         HStack {
             Toggle(alreadyBought.name, isOn: $alreadyBought.alreadyBought)
+                .tint(.accentColor)
         }
     }
 }
 
-//#Preview {
-//    AlreadyBought(alreadyBought: .constant(false))
-//}
+#Preview {
+    AlreadyBought(alreadyBought:Purchase(name: "name"))
+}

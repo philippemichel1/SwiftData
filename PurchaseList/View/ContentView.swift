@@ -21,8 +21,20 @@ struct ContentView: View {
     var body: some View {
         NavigationSplitView {
             VStack() {
-                Button("Article") {self.openView.toggle()}
+                HStack {
+                    Button("Ajout Article") {self.openView.toggle()}
+                        .buttonStyle(PlainButtonStyle())
+                        .foregroundColor(.white)
+                        .padding(.horizontal)
+                        .background(.blue)
+                        .cornerRadius(10)
+                        .font(.title2)
+                    
+                    
+                }
+                
             }
+            
             
             List {
                 ForEach(items) { item in

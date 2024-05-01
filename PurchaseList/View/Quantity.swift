@@ -14,6 +14,6 @@ struct Quantity: View {
     }
 }
 
-//#Preview {
-//    Quantity(myQuantity: <#Purchase#>)
-//}
+#Preview {
+   Quantity(myQuantity:Purchase(name: "name"))
+}
