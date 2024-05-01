@@ -14,7 +14,7 @@ struct ContactForm: View {
     var body: some View {
         NavigationStack {
             Form {
-                    Section("Ajouter article") {
+                    Section("Ajouter un article") {
                         TextField("Nouvel Article", text: $text)
                             .textFieldStyle(.roundedBorder)
                             .padding()

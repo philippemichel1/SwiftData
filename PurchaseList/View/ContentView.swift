@@ -64,7 +64,7 @@ struct ContentView: View {
             Text("Select an item")
         }
     }
-
+//  Ajoute un Item
     private func saveItem() {
         withAnimation {
             if !purchaseLabel.isEmpty {
@@ -78,6 +78,7 @@ struct ContentView: View {
         }
     }
 
+    // Supprime un Item 
     private func deleteItems(offsets: IndexSet) {
         withAnimation {
             for index in offsets {
