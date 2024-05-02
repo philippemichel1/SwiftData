@@ -3,7 +3,6 @@
 //  PurchaseList
 //
 //  Created by Philippe MICHEL on 29/04/2024.
-//
 
 import SwiftUI
 

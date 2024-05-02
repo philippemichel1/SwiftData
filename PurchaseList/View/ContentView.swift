@@ -22,7 +22,7 @@ struct ContentView: View {
         NavigationSplitView {
             VStack {
                 HStack {
-                    Button("Ajout un article") {self.openView.toggle()}
+                    Button("Ajout d'un article") {self.openView.toggle()}
                         .buttonStyle(PlainButtonStyle())
                         .foregroundColor(.white)
                         .padding(.horizontal)
